@@ -38,9 +38,9 @@ public class FileService {
             create(filename);
         }
 
-        // open file and write UUID
+        // open file and write current time
         FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(UUID.randomUUID().toString() + "\n");
+        fileWriter.write(Instant.now().toString() + "\n");
         fileWriter.close();
 
         // write a log entry
@@ -55,7 +55,7 @@ public class FileService {
             create(filename);
         }
 
-        // then delete
+        // and delete
         file.delete();
 
         // write a log entry

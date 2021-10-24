@@ -2,66 +2,51 @@
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This application can be used to test an Endpoint Detection and Response (EDR) agent by triggering specific
+activities. Telemetry for each activity is collected and logged for further analysis to ensure the EDR agents
+are functioning properly.
 
-## Running the application in dev mode
+## Overview
+To satisfy the homework requirements, I created a CLI application based on a Java-based technology called 
+[Quarkus](https://quarkus.io) using [picocli](http://picocli.info). The supported functionality is described below. 
+Telemetry logs default to `/tmp/edr-agent-utility-cli.log` but can be modified by adding `-Dlogfile=<logfile>` to the
+java command as shown below.
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./gradlew quarkusDev
+## Command Line Interface
+### NAME
+
+Launches the EDR Agent utility CLI:
+
+```
+java [-Dlogfile=<logfile>] -jar edr-agent-utility-cli-1.0.0-SNAPSHOT-runner.jar [-h, --help] [-V, --version] <command> [<args>]
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+### SYNOPSIS
+
+| command | args | description | 
+| ---- | ---- | ----|
+| create | -f,--file=\<file> | Creates a `file` of a specified type at a specified location |
+| modify | -f,--file=\<file> | Modifies a `file` |
+| delete | -f,--file=\<file> | Deletes a `file` |
+| run | -e,--executable=\<executable> [\<args>...]| Runs a process given a path to the `executable` file and the desired (optional) command-line arguments |
+| transmit | -h,--host=\<ip>  -p,--port=\<port>| Creates a network connection to `ip:port` and transmits data |
+
+### DESCRIPTION
+
+
+
 
 ## Packaging and running the application
 
 The application can be packaged using:
-```shell script
-./gradlew build
-```
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
 
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
 ```shell script
 ./gradlew build -Dquarkus.package.type=uber-jar
 ```
 
+> Note: App was tested with OpenJDK 11
+
+It produces the `*-runner.jar` file in the `build/` directory. Be aware that it is an
+_über-jar_ and all dependencies are packaged in this single executable jar.
+
 The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./build/edr-agent-utility-cli-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
-
-## Related Guides
-
-- Picocli ([guide](https://quarkus.io/guides/picocli)): Develop command line applications with Picocli
-
-## Provided Code
-
-### Picocli Example
-
-Hello and goodbye are civilization fundamentals. Let's not forget it with this example picocli application by changing the <code>command</code> and <code>parameters</code>.
-
-[Related guide section...](https://quarkus.io/guides/picocli#command-line-application-with-multiple-commands)
-
-Also for picocli applications the dev mode is supported. When running dev mode, the picocli application is executed and on press of the Enter key, is restarted.
-
-As picocli applications will often require arguments to be passed on the commandline, this is also possible in dev mode via:
-```shell script
-./gradlew quarkusDev --quarkus-args='Quarky'
-```
