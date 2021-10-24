@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 11
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew build -Dquarkus.package.type=uber-jar
       - uses: actions/upload-artifact@v2
         with:
           name: edr-agent-utility-cli
