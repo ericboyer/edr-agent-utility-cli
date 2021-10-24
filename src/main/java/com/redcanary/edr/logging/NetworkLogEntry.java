@@ -28,11 +28,11 @@ public class NetworkLogEntry extends LogEntry {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
+        sb.append(super.toString()).append(COMMA);;
         sb.append(destinationAddressPort).append(COMMA);
         sb.append(sourceAddressPort).append(COMMA);
         sb.append(dataSentInBytes + "B").append(COMMA);
-        sb.append(protocol).append(COMMA);
+        sb.append(protocol);
 
         return sb.toString();
     }

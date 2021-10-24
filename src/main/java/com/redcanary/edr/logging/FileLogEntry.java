@@ -22,9 +22,9 @@ public class FileLogEntry extends LogEntry {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
+        sb.append(super.toString()).append(COMMA);;
         sb.append(absolutePath).append(COMMA);
-        sb.append(activityType).append(COMMA);
+        sb.append(activityType);
 
         return sb.toString();
     }
