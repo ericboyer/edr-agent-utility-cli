@@ -1,5 +1,7 @@
 # edr-agent-utility-cli Project
 
+[![Quarkus Codestart CI](https://github.com/ericboyer/edr-agent-utility-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/ericboyer/edr-agent-utility-cli/actions/workflows/ci.yml)
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 This application can be used to test an Endpoint Detection and Response (EDR) agent by triggering specific
